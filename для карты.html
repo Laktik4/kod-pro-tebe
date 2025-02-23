@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Létající obrázky</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            margin: 0;
+            overflow: hidden;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .floating-img {
+            position: absolute;
+            width: 50px; /* Размер изображения */
+            height: 50px;
+            opacity: 0.8;
+            transition: transform 3s ease-in-out; /* Плавное движение (увеличено до 3 секунд) */
+        }
+    </style>
+</head>
+<body>
+    <h1>Získat jedinečný kód</h1>
+    <form action="redirect.php" method="POST">
+        <button type="submit">Získat kód!</button>
+    </form>
+
+    <div class="container" id="container"></div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const container = document.getElementById("container");
+            const imgSrc = "C:\Users\Богдан\CascadeProjects\5321285895460090203.png"; // Путь к изображению
+
+            function createFloatingImage() {
+                const img = document.createElement("img");
+                img.src = imgSrc;
+                img.classList.add("floating-img");
+
+                // Случайная позиция
+                img.style.left = Math.random() * window.innerWidth + "px";
+                img.style.top = Math.random() * window.innerHeight + "px";
+
+                container.appendChild(img);
+
+                function moveImage() {
+                    img.style.transform = `translate(${Math.random() * 200 - 100}px, ${Math.random() * 200 - 100}px)`;
+                }
+
+                setInterval(moveImage, 3000); // Теперь обновление каждые 3 секунды
+            }
+
+            for (let i = 0; i < 100; i++) {
+                createFloatingImage();
+            }
+        });
+    </script>
+</body>
+</html>
